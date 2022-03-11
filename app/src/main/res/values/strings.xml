@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="search">Search</string>
+    <string name="top_3_rank_crypto">Top 3 rank crypto</string>
+    <string name="buy_sell_and_hold_crypto">Buy, Sell and hold crypto</string>
+    <string name="price">Price</string>
+    <string name="market_cap">MARKET CAP</string>
+</resources>
