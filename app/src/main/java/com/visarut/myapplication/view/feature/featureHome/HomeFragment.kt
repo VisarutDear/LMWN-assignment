@@ -22,7 +22,7 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
     private val bottomSheetFragment = BottomSheetFragment()
     private lateinit var loadMoreScollListener: RecyclerView.OnScrollListener
 
-        override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -35,32 +35,33 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
         binding.swipeRefreshLayout.setOnRefreshListener {
             fetchCoinList()
         }
+
         initEndlessScroll()
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                viewModel.searchCoin(query)
-                return true
-            }
+        setOnQueryTextListener()
 
-            override fun onQueryTextChange(query: String): Boolean {
-                viewModel.searchCoin(query)
-                return true
+        binding.searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            if(!hasFocus) {
+                viewModel.showTopRank()
             }
+        }
 
-        })
         val homeFragmentController = HomeFragmentController()
-
         homeFragmentController.setItemSelectListener(this)
-
         binding.epoxyList.setController(homeFragmentController)
         binding.epoxyList.addOnScrollListener(loadMoreScollListener)
 
         viewModel.coinList.observe(viewLifecycleOwner, {
-            val coinsData = CoinsData(viewModel.coinList)
+            val coinsData = CoinsData(viewModel.coinList,viewModel.isShowTopRank)
             homeFragmentController.setData(coinsData)
         })
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.searchView.clearFocus()
+        viewModel.showTopRank()
     }
 
     override fun onClickCoin(uuid: String) {
@@ -87,5 +88,21 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
                 }
             }
         }
+    }
+
+    private fun setOnQueryTextListener() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.hideTopRank()
+                viewModel.searchCoin(query)
+                return true
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                viewModel.hideTopRank()
+                viewModel.searchCoin(query)
+                return true
+            }
+        })
     }
 }

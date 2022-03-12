@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SkeletonStyle">
+        <item name="shimmer_colored">true</item>
+        <item name="shimmer_auto_start">true</item>
+        <item name="shimmer_base_alpha">1</item>
+        <item name="shimmer_base_color">@color/shimmer</item>
+        <item name="shimmer_highlight_color">@color/light_gray</item>
+        <item name="shimmer_tilt">0</item>
+        <item name="shimmer_duration">1600</item>
+        <item name="shimmer_fixed_height">50dp</item>
+    </style>
+</resources>

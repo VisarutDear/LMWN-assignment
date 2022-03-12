@@ -46,11 +46,7 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
             }
         }
 
-        data?.coinList?.let {
-//            searchFilter {
-//                id("search_filter")
-//            }
-
+        if(data?.isShowTopRank?.value == true) {
             headerTopRank {
                 id("header_top_rank")
             }
@@ -63,6 +59,9 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
                     )
                 }
             }
+        }
+
+        data?.coinList?.let {
 
             headerMarket {
                 id("header_market")

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_top_rank_title"
+            android:layout_width="126dp"
+            android:layout_height="21dp"
+            android:background="@drawable/bg_skeleton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/SkeletonStyle" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_top_rank_coin_1"
+            android:layout_width="110dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="@dimen/spacing_12"
+            android:background="@drawable/bg_skeleton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_top_rank_title"
+            style="@style/SkeletonStyle" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_top_rank_coin_2"
+            android:layout_width="110dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/bg_skeleton"
+            app:layout_constraintStart_toEndOf="@id/shimmer_top_rank_coin_1"
+            app:layout_constraintTop_toTopOf="@id/shimmer_top_rank_coin_1"
+            style="@style/SkeletonStyle" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_top_rank_coin_3"
+            android:layout_width="110dp"
+            android:layout_height="140dp"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:background="@drawable/bg_skeleton"
+            app:layout_constraintStart_toEndOf="@id/shimmer_top_rank_coin_2"
+            app:layout_constraintTop_toTopOf="@id/shimmer_top_rank_coin_2"
+            style="@style/SkeletonStyle" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_market_title"
+            android:layout_width="175dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="@dimen/spacing_22"
+            android:background="@drawable/bg_skeleton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_top_rank_coin_1"
+            style="@style/SkeletonStyle" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_coin_item"
+            android:layout_width="359dp"
+            android:layout_height="82dp"
+            android:layout_marginTop="@dimen/spacing_12"
+            android:background="@drawable/bg_skeleton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_market_title"
+            style="@style/SkeletonStyle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
