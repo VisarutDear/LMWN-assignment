@@ -5,12 +5,15 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.airbnb.epoxy.carousel
 import com.visarut.myapplication.*
 import com.visarut.myapplication.domain.model.CoinsData
+import com.visarut.myapplication.view.feature.featureHome.HomeViewModel
 
-class HomeFragmentController() : TypedEpoxyController<CoinsData>() {
+class HomeFragmentController : TypedEpoxyController<CoinsData>() {
+
+    companion object {
+        const val DEFAULT_TOP_RANK = 3
+    }
 
     private var callback: HomeFragmentController.AddOnItemSelected? = null
-    private val topRankIndex = 3
-    private var total = 23
 
     interface AddOnItemSelected {
         fun onClickCoin(uuid : String)
@@ -24,7 +27,7 @@ class HomeFragmentController() : TypedEpoxyController<CoinsData>() {
 
         Log.d("test", data?.coinList?.value.toString())
 
-        val topRank = data?.coinList?.value?.take(topRankIndex)?.mapIndexed{ index, coin ->
+        val topRank = data?.coinList?.value?.take(DEFAULT_TOP_RANK)?.mapIndexed{ index, coin ->
             CryptoRankBindingModel_().apply {
                 id("crypto$index")
                 imageUrl(coin.iconUrl)
@@ -58,22 +61,35 @@ class HomeFragmentController() : TypedEpoxyController<CoinsData>() {
             id("header_market")
         }
 
-        data?.coinList?.value?.subList(topRankIndex,total)?.forEach {
-            coin {
-                id(it.uuid)
-                fullName(it.name)
-                shortName(it.symbol)
-                price(it.price)
-                percentage(it.change)
-                imageUrl(it.iconUrl)
-                onClickCoinItem { _ ->
-                    this@HomeFragmentController.callback?.onClickCoin(it.uuid)
+
+//        if(HomeViewModel.isLoadMore) data?.coinList?.postValue(null)
+        when{
+            data == null -> {
+                // render skeleton
+            }
+            data.coinList.value?.isNotEmpty() == true -> {
+                data.coinList.value?.size?.let {
+                    data.coinList.value?.subList(DEFAULT_TOP_RANK, it)?.forEach {
+                        coin {
+                            id(it.uuid)
+                            fullName(it.name)
+                            shortName(it.symbol)
+                            price(it.price)
+                            percentage(it.change)
+                            imageUrl(it.iconUrl)
+                            onClickCoinItem { _ ->
+                                this@HomeFragmentController.callback?.onClickCoin(it.uuid)
+                            }
+                        }
+                    }
+                } ?: run {
+                    loadMore {
+                        id("load_more")
+                    }
                 }
             }
+
         }
-
-
-
 
     }
 }

@@ -4,7 +4,7 @@ import com.visarut.myapplication.data.response.CoinDetailResponse
 import com.visarut.myapplication.data.response.CoinsResponse
 
 interface CoinRepository {
-    suspend fun getCoins(): CoinsResponse
+    suspend fun getCoins(offSet: Int, limit: Int): CoinsResponse
     fun searchCoin(keyWord: String)
     suspend fun getCoinDetail(uuid: String): CoinDetailResponse
 }

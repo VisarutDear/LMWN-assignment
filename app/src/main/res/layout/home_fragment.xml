@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.visarut.myapplication.view.feature.featureHome.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.airbnb.epoxy.EpoxyRecyclerView
-            android:id="@+id/epoxy_list"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/spacing_16"/>
+            android:text="@{String.valueOf(viewModel.coinList.size)}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="text"/>
 
-    </LinearLayout>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_16"
+            app:layout_constraintStart_toStartOf="@id/test"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.airbnb.epoxy.EpoxyRecyclerView
+                android:id="@+id/epoxy_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

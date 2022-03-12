@@ -7,8 +7,8 @@ import com.visarut.myapplication.data.response.CoinsResponse
 class CoinUseCase(
     private val coinRepository: CoinRepository
 ) {
-    suspend fun getCoin(): CoinsResponse {
-        return coinRepository.getCoins()
+    suspend fun getCoin(offset: Int, limit: Int): CoinsResponse {
+        return coinRepository.getCoins(offset, limit)
     }
 
     fun searchCoin(keyword: String) {

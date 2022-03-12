@@ -7,8 +7,8 @@ import com.visarut.myapplication.data.response.CoinsResponse
 import com.visarut.myapplication.data.response.Data
 
 class CoinRepositoryImpl(private val api: ApiService): CoinRepository {
-    override suspend fun getCoins(): CoinsResponse {
-        return api.fetchCoins()
+    override suspend fun getCoins(offSet: Int, limit: Int): CoinsResponse {
+        return api.fetchCoins(offSet, limit)
     }
 
     override fun searchCoin(keyword: String) {
