@@ -5,4 +5,5 @@
     <string name="buy_sell_and_hold_crypto">Buy, Sell and hold crypto</string>
     <string name="price">Price</string>
     <string name="market_cap">MARKET CAP</string>
+    <string name="go_to_website">GO TO WEBSITE</string>
 </resources>

@@ -75,6 +75,10 @@
                     android:layout_marginStart="@dimen/spacing_16"
                     android:textAlignment="center"
                     android:text="@{fullName}"
+                    android:textSize="@dimen/font_16"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/dark_gray"
+
                     app:layout_constraintStart_toEndOf="@id/frame_layout_coin_icon"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Bitcoin" />
@@ -86,6 +90,8 @@
                     android:layout_marginTop="@dimen/spacing_6"
                     android:layout_marginStart="@dimen/spacing_16"
                     android:textAlignment="center"
+                    android:textColor="@color/gray"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="@{shortName}"
                     app:layout_constraintStart_toEndOf="@id/frame_layout_coin_icon"
                     app:layout_constraintTop_toBottomOf="@id/text_view_coin_full_name"
@@ -98,6 +104,8 @@
                     android:layout_marginTop="@dimen/spacing_25"
                     android:layout_marginEnd="@dimen/spacing_16"
                     android:textAlignment="center"
+                    android:textColor="@color/dark_charcoal"
+                    android:textSize="@dimen/font_12"
                     android:text="@{price}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -110,6 +118,8 @@
                     android:layout_marginTop="@dimen/spacing_8"
                     android:textAlignment="center"
                     android:text="@{percentage}"
+                    android:textSize="@dimen/font_12"
+                    android:fontFamily="@font/roboto_bold"
                     app:layout_constraintTop_toBottomOf="@id/text_view_coin_price"
                     app:layout_constraintEnd_toEndOf="@+id/text_view_coin_price"
                     tools:text="1.07" />

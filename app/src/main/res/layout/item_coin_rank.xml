@@ -68,10 +68,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_8"
-                    app:layout_constraintTop_toBottomOf="@id/frame_layout_coin_icon"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="@dimen/font_14"
+                    android:textColor="@color/dark_gray"
                     android:textAlignment="center"
                     android:text="@{name}"
+                    app:layout_constraintTop_toBottomOf="@id/frame_layout_coin_icon"
+                    app:layout_constraintStart_toStartOf="parent"
                     tools:text="BTC" />
 
                 <TextView
@@ -81,6 +84,9 @@
                     android:layout_marginTop="@dimen/spacing_8"
                     android:textAlignment="center"
                     android:text="@{symbol}"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/font_12"
                     app:layout_constraintTop_toBottomOf="@id/text_view_coin_name"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="Bitcoin" />
@@ -91,6 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_8"
                     android:textAlignment="center"
+                    android:textSize="@dimen/font_12"
                     android:text="@{change}"
                     app:layout_constraintTop_toBottomOf="@id/text_view_coin_full_name"
                     app:layout_constraintStart_toStartOf="parent"

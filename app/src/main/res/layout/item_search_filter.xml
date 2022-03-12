@@ -10,17 +10,21 @@
         android:id="@+id/searchFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_16">
+        android:layout_marginBottom="@dimen/spacing_16">
 
         <EditText
             android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_weight="3"
-            android:drawableStart="@drawable/ic_baseline_search_24"
             android:hint="@string/search"
-            android:textSize="14sp"
+            android:textSize="@dimen/font_14"
+            android:fontFamily="@font/roboto_regular"
+            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:drawablePadding="@dimen/spacing_15"
+            android:paddingLeft="@dimen/spacing_15"
             android:background="@drawable/box"
+            android:textColor="@color/gray_62"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />

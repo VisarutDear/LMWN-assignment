@@ -14,6 +14,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/buy_sell_and_hold_crypto"
+            android:textColor="@color/dark_gray"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="@dimen/font_16"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

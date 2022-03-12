@@ -28,7 +28,7 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
         Log.d("test", data?.coinList?.value.toString())
 
         val topRank = data?.coinList?.value?.take(DEFAULT_TOP_RANK)?.mapIndexed{ index, coin ->
-            CryptoRankBindingModel_().apply {
+            CoinRankBindingModel_().apply {
                 id("crypto$index")
                 imageUrl(coin.iconUrl)
                 name(coin.name)
@@ -40,55 +40,72 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
             }
         }
 
-        searchFilter {
-            id("search_filter")
-        }
-
-        headerTopRank {
-            id("header_top_rank")
-        }
-
-        carousel {
-            id("top_rank_carousel")
-            topRank?.let {
-                models(
-                    it
-                )
+        val topRankSkeleton = (0..2).mapIndexed{ index, coin ->
+            CoinRankSkeletonBindingModel_().apply {
+                id("crypto$index")
             }
         }
 
-        headerMarket {
-            id("header_market")
-        }
-
-
-//        if(HomeViewModel.isLoadMore) data?.coinList?.postValue(null)
-        when{
-            data == null -> {
-                // render skeleton
+        data?.coinList?.let {
+            searchFilter {
+                id("search_filter")
             }
-            data.coinList.value?.isNotEmpty() == true -> {
-                data.coinList.value?.size?.let {
-                    data.coinList.value?.subList(DEFAULT_TOP_RANK, it)?.forEach {
-                        coin {
-                            id(it.uuid)
-                            fullName(it.name)
-                            shortName(it.symbol)
-                            price(it.price)
-                            percentage(it.change)
-                            imageUrl(it.iconUrl)
-                            onClickCoinItem { _ ->
-                                this@HomeFragmentController.callback?.onClickCoin(it.uuid)
-                            }
-                        }
-                    }
-                } ?: run {
-                    loadMore {
-                        id("load_more")
-                    }
+
+            headerTopRank {
+                id("header_top_rank")
+            }
+
+            carousel {
+                id("top_rank_carousel")
+                topRank?.let {
+                    models(
+                        it
+                    )
                 }
             }
 
+            headerMarket {
+                id("header_market")
+            }
+
+            when{
+                data.coinList.value?.isNotEmpty() == true -> {
+                    data.coinList.value?.size?.let {
+                        data.coinList.value?.subList(DEFAULT_TOP_RANK, it)?.forEach {
+                            coin {
+                                id(it.uuid)
+                                fullName(it.name)
+                                shortName(it.symbol)
+                                price(it.price)
+                                percentage(it.change)
+                                imageUrl(it.iconUrl)
+                                onClickCoinItem { _ ->
+                                    this@HomeFragmentController.callback?.onClickCoin(it.uuid)
+                                }
+                            }
+                        }
+                    } ?: run {
+                        loadMore {
+                            id("load_more")
+                        }
+                    }
+                }
+
+            }
+
+        } ?: run {
+            renderSkeleton()
+        }
+    }
+
+    private fun renderSkeleton () {
+        carousel {
+            id("skeleton_carousel")
+            for (index in 0..2) {
+                CoinRankSkeletonBindingModel_().apply {
+                    id("skeleton${index}")
+                }
+            }
         }
 
     }
