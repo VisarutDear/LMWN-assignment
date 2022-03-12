@@ -9,6 +9,8 @@ import com.visarut.myapplication.domain.model.CoinsData
 class HomeFragmentController() : TypedEpoxyController<CoinsData>() {
 
     private var callback: HomeFragmentController.AddOnItemSelected? = null
+    private val topRankIndex = 3
+    private var total = 23
 
     interface AddOnItemSelected {
         fun onClickCoin(uuid : String)
@@ -22,9 +24,16 @@ class HomeFragmentController() : TypedEpoxyController<CoinsData>() {
 
         Log.d("test", data?.coinList?.value.toString())
 
-        val topRank = listOf(1,2,3).mapIndexed{ index, i ->
+        val topRank = data?.coinList?.value?.take(topRankIndex)?.mapIndexed{ index, coin ->
             CryptoRankBindingModel_().apply {
                 id("crypto$index")
+                imageUrl(coin.iconUrl)
+                name(coin.name)
+                symbol(coin.symbol)
+                change(coin.change)
+                onClickCoinItem { _ ->
+                    this@HomeFragmentController.callback?.onClickCoin(coin.uuid)
+                }
             }
         }
 
@@ -38,7 +47,7 @@ class HomeFragmentController() : TypedEpoxyController<CoinsData>() {
 
         carousel {
             id("top_rank_carousel")
-            topRank.let {
+            topRank?.let {
                 models(
                     it
                 )
@@ -49,7 +58,7 @@ class HomeFragmentController() : TypedEpoxyController<CoinsData>() {
             id("header_market")
         }
 
-        data?.coinList?.value?.forEach {
+        data?.coinList?.value?.subList(topRankIndex,total)?.forEach {
             coin {
                 id(it.uuid)
                 fullName(it.name)

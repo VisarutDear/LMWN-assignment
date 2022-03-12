@@ -28,7 +28,17 @@
         <variable
             name="description"
             type="String" />
+
+        <variable
+            name="website"
+            type="String" />
+
+        <variable
+            name="onClickWebSite"
+            type="android.view.View.OnClickListener" />
+
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -119,6 +129,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_view_market_cap"
             tools:text="Bitcoin is the first digital currency that allows users to send and receive money" />
+
+        <Button
+            android:id="@+id/button_coin_website"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_24"
+            android:layout_marginEnd="@dimen/spacing_24"
+            android:layout_marginTop="@dimen/spacing_16"
+            android:text="GO TO WEBSITE"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_coin_description"
+            tools:text="GO TO WEBSITE" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

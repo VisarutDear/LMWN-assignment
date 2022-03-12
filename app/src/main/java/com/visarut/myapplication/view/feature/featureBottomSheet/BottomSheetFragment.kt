@@ -1,5 +1,7 @@
 package com.visarut.myapplication.view.feature.featureBottomSheet
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +27,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         binding = BottomSheetFragmentBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = this
+//        binding.viewModel = viewModel
         viewModel.fetchCoinDetail(arguments?.getString("uuid") ?: "")
         viewModel.coinList.observe(viewLifecycleOwner, {
             binding.fullName = it.name
@@ -33,9 +36,19 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             binding.marketCap = it.marketCap
             binding.imageUrl = it.iconUrl
             binding.description = it.description
+            binding.website = it.websiteUrl
+            binding.buttonCoinWebsite.setOnClickListener { _ ->
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.websiteUrl))
+                context?.startActivity(intent)
+            }
         })
 
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
 }

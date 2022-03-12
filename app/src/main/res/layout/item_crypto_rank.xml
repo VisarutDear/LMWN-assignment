@@ -3,9 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="imageUrl"
+            type="String" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="symbol"
+            type="String" />
+
+        <variable
+            name="change"
+            type="String" />
+
+        <variable
+            name="onClickCoinItem"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{onClickCoinItem}">
 
         <androidx.cardview.widget.CardView
             android:layout_width="110dp"
@@ -19,27 +43,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/light_gray">
-                
-                <ImageView
-                    android:id="@+id/image_view_coin_icon"
+
+                <FrameLayout
+                    android:id="@+id/frame_layout_coin_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="@dimen/spacing_16"
                     android:layout_marginStart="@dimen/spacing_35"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:src="@drawable/btc"
-                    tools:src="@drawable/btc"/>
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <WebView
+                        android:id="@+id/web_view_coin_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/btc"
+                        app:imageUrl="@{imageUrl}"
+                        tools:src="@drawable/btc" />
+
+                </FrameLayout>
 
                 <TextView
                     android:id="@+id/text_view_coin_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_8"
-                    app:layout_constraintTop_toBottomOf="@id/image_view_coin_icon"
+                    app:layout_constraintTop_toBottomOf="@id/frame_layout_coin_icon"
                     app:layout_constraintStart_toStartOf="parent"
                     android:textAlignment="center"
-                    android:text="BTC"
+                    android:text="@{name}"
                     tools:text="BTC" />
 
                 <TextView
@@ -48,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_8"
                     android:textAlignment="center"
-                    android:text="Bitcoin"
+                    android:text="@{symbol}"
                     app:layout_constraintTop_toBottomOf="@id/text_view_coin_name"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="Bitcoin" />
@@ -59,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_8"
                     android:textAlignment="center"
-                    android:text="1.07"
+                    android:text="@{change}"
                     app:layout_constraintTop_toBottomOf="@id/text_view_coin_full_name"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="1.07" />
