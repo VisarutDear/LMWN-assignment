@@ -26,9 +26,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         viewModel.fetchCoinDetail(arguments?.getString("uuid") ?: "")
         viewModel.coinDetail.observe(viewLifecycleOwner, {
             binding.fullName = it.name
-            binding.symbol = it.symbol
-            binding.price = it.price
-            binding.marketCap = it.marketCap
+            binding.symbol = "(" + it.symbol +")"
+            binding.price = "$ "+ it.price
+            binding.marketCap = "$ "+it.marketCap
             binding.imageUrl = it.iconUrl
             binding.description = it.description ?: "No description"
             binding.website = it.websiteUrl
