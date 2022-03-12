@@ -6,12 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.annotation.IdRes
-import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.visarut.myapplication.R
 import com.visarut.myapplication.databinding.BottomSheetFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -27,15 +22,15 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         binding = BottomSheetFragmentBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = this
-//        binding.viewModel = viewModel
+        binding.viewModel = viewModel
         viewModel.fetchCoinDetail(arguments?.getString("uuid") ?: "")
-        viewModel.coinList.observe(viewLifecycleOwner, {
+        viewModel.coinDetail.observe(viewLifecycleOwner, {
             binding.fullName = it.name
             binding.symbol = it.symbol
             binding.price = it.price
             binding.marketCap = it.marketCap
             binding.imageUrl = it.iconUrl
-            binding.description = it.description
+            binding.description = it.description ?: "No description"
             binding.website = it.websiteUrl
             binding.buttonCoinWebsite.setOnClickListener { _ ->
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.websiteUrl))

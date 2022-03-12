@@ -6,18 +6,23 @@ import androidx.lifecycle.viewModelScope
 import com.visarut.myapplication.data.response.CoinDetail
 import com.visarut.myapplication.domain.usecase.CoinUseCase
 import kotlinx.coroutines.launch
-import java.util.*
 
 class BottomSheetViewModel(
     private val coinUseCase: CoinUseCase
 ) : ViewModel() {
 
-    var coinList: MutableLiveData<CoinDetail> = MutableLiveData()
+    var coinDetail: MutableLiveData<CoinDetail> = MutableLiveData()
+    var isShowWebSite = MutableLiveData(false)
 
     fun fetchCoinDetail(coinUUID: String) {
         viewModelScope.launch {
-            coinList.value = coinUseCase.getCoinDetail(coinUUID).data.coin
+            coinDetail.value = coinUseCase.getCoinDetail(coinUUID).data.coin
         }
+        setData()
+    }
+
+    private fun setData() {
+        isShowWebSite.postValue(coinDetail.value?.websiteUrl.isNullOrBlank().not())
     }
 
 }

@@ -5,6 +5,8 @@
     tools:context=".view.feature.featureBottomSheet.BottomSheetFragment">
     <data>
 
+        <import type="android.view.View" />
+        
         <variable
             name="fullName"
             type="String" />
@@ -36,6 +38,10 @@
         <variable
             name="onClickWebSite"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="viewModel"
+            type="com.visarut.myapplication.view.feature.featureBottomSheet.BottomSheetViewModel" />
 
     </data>
 
@@ -141,6 +147,7 @@
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_view_coin_description"
+            android:visibility="@{viewModel.isShowWebSite? View.VISIBLE : View.GONE}"
             tools:text="GO TO WEBSITE" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

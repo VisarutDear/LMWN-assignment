@@ -16,7 +16,7 @@ data class CoinDetail(
     val change: String,
     val coinrankingUrl: String,
     val color: String,
-    val description: String,
+    val description: String?,
     val iconUrl: String,
     val links: List<Link>,
     val listedAt: Int,
@@ -33,7 +33,7 @@ data class CoinDetail(
     val symbol: String,
     val tier: Int,
     val uuid: String,
-    val websiteUrl: String
+    val websiteUrl: String?
 )
 
 data class Link(
