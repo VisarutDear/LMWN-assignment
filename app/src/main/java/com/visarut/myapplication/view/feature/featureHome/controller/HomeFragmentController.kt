@@ -47,9 +47,9 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
         }
 
         data?.coinList?.let {
-            searchFilter {
-                id("search_filter")
-            }
+//            searchFilter {
+//                id("search_filter")
+//            }
 
             headerTopRank {
                 id("header_top_rank")

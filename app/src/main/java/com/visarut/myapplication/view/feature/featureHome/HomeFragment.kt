@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.visarut.myapplication.R
@@ -35,6 +36,18 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
             fetchCoinList()
         }
         initEndlessScroll()
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.searchCoin(query)
+                return true
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                viewModel.searchCoin(query)
+                return true
+            }
+
+        })
         val homeFragmentController = HomeFragmentController()
 
         homeFragmentController.setItemSelectListener(this)
