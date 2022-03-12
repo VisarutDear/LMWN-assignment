@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.visarut.myapplication.databinding.BottomSheetFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,21 +25,21 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         viewModel.fetchCoinDetail(arguments?.getString("uuid") ?: "")
-        viewModel.coinDetail.observe(viewLifecycleOwner, {
+        viewModel.coinDetail.observe(viewLifecycleOwner, { it ->
             binding.fullName = it.name
             binding.symbol = "(" + it.symbol +")"
             binding.price = "$ "+ it.price
             binding.marketCap = "$ "+it.marketCap
             binding.imageUrl = it.iconUrl
-            binding.description = it.description ?: "No description"
+//            binding.description = it.description ?: "No description"
+            binding.textViewCoinDescription.text =
+                it.description?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_COMPACT) }
             binding.website = it.websiteUrl
             binding.buttonCoinWebsite.setOnClickListener { _ ->
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.websiteUrl))
                 context?.startActivity(intent)
             }
         })
-
-
         return binding.root
     }
 

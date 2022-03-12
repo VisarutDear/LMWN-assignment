@@ -149,7 +149,6 @@
             android:layout_marginEnd="@dimen/spacing_24"
             android:layout_marginTop="@dimen/spacing_16"
             android:fontFamily="@font/roboto_regular"
-            android:text="@{description}"
             android:textColor="@color/gray"
             android:textSize="@dimen/font_14"
             app:layout_constrainedWidth="true"

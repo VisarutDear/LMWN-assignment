@@ -73,6 +73,7 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
     }
 
     private fun fetchCoinList() {
+        viewModel.showSkeleton()
         viewModel.fetchCoin()
         binding.swipeRefreshLayout.isRefreshing = false
     }
