@@ -11,6 +11,7 @@ import androidx.core.text.HtmlCompat
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.visarut.myapplication.databinding.BottomSheetFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.DecimalFormat
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
@@ -29,8 +30,8 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         viewModel.coinDetail.observe(viewLifecycleOwner, { it ->
             binding.fullName = it.name
             binding.symbol = "(" + it.symbol +")"
-            binding.price = "$ "+ it.price
-            binding.marketCap = "$ "+it.marketCap
+            binding.price = "$ "+ String.format("%.2f", it.price)
+            binding.marketCap = "$ "+ DecimalFormat("${it.marketCap},00")
             binding.imageUrl = it.iconUrl
             binding.textViewCoinDescription.text =
                 it.description?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_COMPACT) } ?: "No description"

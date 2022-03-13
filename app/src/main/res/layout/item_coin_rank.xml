@@ -21,6 +21,10 @@
             type="String" />
 
         <variable
+            name="changeFloat"
+            type="Float" />
+
+        <variable
             name="onClickCoinItem"
             type="android.view.View.OnClickListener" />
 
@@ -93,14 +97,19 @@
 
                 <TextView
                     android:id="@+id/text_view_percentage"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_8"
                     android:textAlignment="center"
                     android:textSize="@dimen/font_12"
                     android:text="@{change}"
+                    android:textColor="@{changeFloat > 0  ? @color/green : @color/red}"
+                    android:layout_centerHorizontal="true"
+                    android:drawableStart="@{changeFloat > 0  ? @drawable/ic_arrow_up : @drawable/ic_arrow_down}"
+                    android:gravity="start|center_horizontal"
                     app:layout_constraintTop_toBottomOf="@id/text_view_coin_full_name"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:text="1.07" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

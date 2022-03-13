@@ -34,6 +34,7 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
                 name(coin.name)
                 symbol(coin.symbol)
                 change(coin.change)
+                changeFloat(coin.change.toFloat())
                 onClickCoinItem { _ ->
                     this@HomeFragmentController.callback?.onClickCoin(coin.uuid)
                 }
@@ -74,9 +75,10 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
                                 id(it.uuid)
                                 fullName(it.name)
                                 shortName(it.symbol)
-                                price(it.price)
-                                percentage(it.change)
+                                price(String.format("%.5f", it.price.toFloat()))
+                                change(it.change)
                                 imageUrl(it.iconUrl)
+                                changeFloat(it.change.toFloat())
                                 onClickCoinItem { _ ->
                                     this@HomeFragmentController.callback?.onClickCoin(it.uuid)
                                 }
