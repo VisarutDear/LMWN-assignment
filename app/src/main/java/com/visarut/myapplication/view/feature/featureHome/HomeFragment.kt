@@ -54,6 +54,10 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
             val coinsData = CoinsData(viewModel.coinList,viewModel.isShowTopRank)
             homeFragmentController.setData(coinsData)
         })
+        binding.textViewTryAgain.bringToFront()
+        binding.textViewTryAgain.setOnClickListener {
+            fetchCoinList()
+        }
 
         return binding.root
     }
@@ -74,6 +78,7 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
 
     private fun fetchCoinList() {
         viewModel.showSkeleton()
+        viewModel.hideRetryButton()
         viewModel.fetchCoin()
         binding.swipeRefreshLayout.isRefreshing = false
     }

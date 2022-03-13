@@ -6,4 +6,6 @@
     <string name="price">Price</string>
     <string name="market_cap">MARKET CAP</string>
     <string name="go_to_website">GO TO WEBSITE</string>
+    <string name="retry">Could not load Data</string>
+    <string name="try_again">Try again</string>
 </resources>

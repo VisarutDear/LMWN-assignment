@@ -4,11 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.visarut.myapplication.data.response.CoinDetail
-import com.visarut.myapplication.domain.usecase.CoinUseCase
+import com.visarut.myapplication.domain.usecase.GetCoinDetailUseCase
+import com.visarut.myapplication.domain.usecase.GetCoinUseCase
 import kotlinx.coroutines.launch
 
 class BottomSheetViewModel(
-    private val coinUseCase: CoinUseCase
+    private val getCoinDetailUseCase: GetCoinDetailUseCase
 ) : ViewModel() {
 
     var coinDetail: MutableLiveData<CoinDetail> = MutableLiveData()
@@ -16,9 +17,23 @@ class BottomSheetViewModel(
 
     fun fetchCoinDetail(coinUUID: String) {
         viewModelScope.launch {
-            coinDetail.value = coinUseCase.getCoinDetail(coinUUID).data.coin
+            val getCoinDetailInput = GetCoinDetailUseCase.Input(coinUUID)
+
+            getCoinDetailUseCase.execute(getCoinDetailInput)
+                .onSuccess {
+                    coinDetail.value = it.data.coin
+                }
+                .onFailure {
+                    // handle error
+                    handleFetchCoinDetailError(it)
+                }
+
         }
         setData()
+    }
+
+    private fun handleFetchCoinDetailError(it: Throwable) {
+        TODO("Not yet implemented")
     }
 
     private fun setData() {
