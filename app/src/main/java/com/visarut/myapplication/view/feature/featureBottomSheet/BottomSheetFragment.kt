@@ -1,6 +1,7 @@
 package com.visarut.myapplication.view.feature.featureBottomSheet
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -39,7 +40,10 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.websiteUrl))
                 context?.startActivity(intent)
             }
+            binding.textViewCoinFullName.setTextColor(Color.parseColor(it.color))
         })
+
+
         return binding.root
     }
 

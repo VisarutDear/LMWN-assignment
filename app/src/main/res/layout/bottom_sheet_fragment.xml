@@ -6,9 +6,13 @@
     <data>
 
         <import type="android.view.View" />
-        
+
         <variable
             name="fullName"
+            type="String" />
+
+        <variable
+            name="color"
             type="String" />
 
         <variable
