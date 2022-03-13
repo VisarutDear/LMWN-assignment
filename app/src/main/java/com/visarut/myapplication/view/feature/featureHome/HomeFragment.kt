@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.visarut.myapplication.R
@@ -77,8 +79,8 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
     }
 
     private fun fetchCoinList() {
+        viewModel.hideAllError()
         viewModel.showSkeleton()
-        viewModel.hideRetryButton()
         viewModel.fetchCoin()
         binding.swipeRefreshLayout.isRefreshing = false
     }
@@ -99,16 +101,22 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
     private fun setOnQueryTextListener() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.showSearching()
                 viewModel.hideTopRank()
                 viewModel.searchCoin(query)
+                binding.searchView.hideKeyBoard()
                 return true
             }
 
             override fun onQueryTextChange(query: String): Boolean {
+                viewModel.showSearching()
                 viewModel.hideTopRank()
                 viewModel.searchCoin(query)
                 return true
             }
         })
     }
+
+    fun View.hideKeyBoard() = ViewCompat.getWindowInsetsController(this)
+        ?.hide(WindowInsetsCompat.Type.ime())
 }

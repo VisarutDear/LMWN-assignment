@@ -56,13 +56,43 @@
             style="@style/SkeletonStyle" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_coin_item"
-            android:layout_width="359dp"
+            android:id="@+id/shimmer_coin_item_1"
+            android:layout_width="match_parent"
             android:layout_height="82dp"
             android:layout_marginTop="@dimen/spacing_12"
             android:background="@drawable/bg_skeleton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shimmer_market_title"
+            style="@style/SkeletonStyle" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_coin_item_2"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:layout_marginTop="@dimen/spacing_12"
+            android:background="@drawable/bg_skeleton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_coin_item_1"
+            style="@style/SkeletonStyle" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_coin_item_3"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:layout_marginTop="@dimen/spacing_12"
+            android:background="@drawable/bg_skeleton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_coin_item_2"
+            style="@style/SkeletonStyle" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_coin_item_4"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:layout_marginTop="@dimen/spacing_12"
+            android:background="@drawable/bg_skeleton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_coin_item_3"
             style="@style/SkeletonStyle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
