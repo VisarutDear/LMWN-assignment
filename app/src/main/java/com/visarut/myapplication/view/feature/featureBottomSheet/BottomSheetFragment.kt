@@ -20,7 +20,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = BottomSheetFragmentBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = this
@@ -32,17 +32,15 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             binding.price = "$ "+ it.price
             binding.marketCap = "$ "+it.marketCap
             binding.imageUrl = it.iconUrl
-//            binding.description = it.description ?: "No description"
             binding.textViewCoinDescription.text =
-                it.description?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_COMPACT) }
+                it.description?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_COMPACT) } ?: "No description"
             binding.website = it.websiteUrl
             binding.buttonCoinWebsite.setOnClickListener { _ ->
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.websiteUrl))
                 context?.startActivity(intent)
             }
-            binding.textViewCoinFullName.setTextColor(Color.parseColor(it.color))
+            binding.textViewCoinFullName.setTextColor(Color.parseColor(it.color ?: "#333333"))
         })
-
 
         return binding.root
     }

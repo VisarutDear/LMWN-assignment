@@ -15,7 +15,7 @@ data class CoinDetail(
     val btcPrice: String,
     val change: String,
     val coinrankingUrl: String,
-    val color: String,
+    val color: String?,
     val description: String?,
     val iconUrl: String,
     val links: List<Link>,

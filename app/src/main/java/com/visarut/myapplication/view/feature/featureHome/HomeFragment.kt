@@ -56,12 +56,20 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
             val coinsData = CoinsData(viewModel.coinList,viewModel.isShowTopRank)
             homeFragmentController.setData(coinsData)
         })
-        binding.textViewTryAgain.bringToFront()
+        setupLoadingToFront()
         binding.textViewTryAgain.setOnClickListener {
             fetchCoinList()
         }
 
         return binding.root
+    }
+
+    private fun setupLoadingToFront() {
+        binding.textViewTryAgain.bringToFront()
+        binding.textViewSearching.bringToFront()
+        binding.textViewErrorTitle.bringToFront()
+        binding.textViewSearchErrorSubtitle.bringToFront()
+        binding.textViewSearchErrorTitle.bringToFront()
     }
 
     override fun onResume() {
@@ -81,6 +89,7 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
     private fun fetchCoinList() {
         viewModel.hideAllError()
         viewModel.showSkeleton()
+        viewModel.showTopRank()
         viewModel.fetchCoin()
         binding.swipeRefreshLayout.isRefreshing = false
     }

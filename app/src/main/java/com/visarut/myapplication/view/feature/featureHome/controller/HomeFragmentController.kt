@@ -63,12 +63,11 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
 
         data?.coinList?.let {
 
-            headerMarket {
-                id("header_market")
-            }
-
             when{
                 data.coinList.value?.isNotEmpty() == true -> {
+                    headerMarket {
+                        id("header_market")
+                    }
                     data.coinList.value?.size?.let {
                         data.coinList.value?.subList(DEFAULT_TOP_RANK, it)?.forEach {
                             coin {
