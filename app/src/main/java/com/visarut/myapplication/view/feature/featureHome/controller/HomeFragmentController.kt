@@ -34,7 +34,7 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
                 name(coin.name)
                 symbol(coin.symbol)
                 change(coin.change)
-                changeFloat((coin.change.toFloat()) as Float?)
+                changeFloat((coin.change?.toFloat()))
                 onClickCoinItem { _ ->
                     this@HomeFragmentController.callback?.onClickCoin(coin.uuid)
                 }
@@ -57,7 +57,6 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
         }
 
         data?.coinList?.let {
-
             when{
                 data.coinList.value?.isNotEmpty() == true -> {
                     headerMarket {
@@ -69,10 +68,10 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
                                 id(it.uuid)
                                 fullName(it.name)
                                 shortName(it.symbol)
-                                price(String.format("%.5f", it.price.toFloat()))
+                                price("$${String.format("%.5f", it.price?.toFloat())}")
                                 change(it.change)
                                 imageUrl(it.iconUrl)
-                                changeFloat(it.change.toFloat())
+                                changeFloat(it.change?.toFloat())
                                 onClickCoinItem { _ ->
                                     this@HomeFragmentController.callback?.onClickCoin(it.uuid)
                                 }

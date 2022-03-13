@@ -13,7 +13,7 @@ data class Data(
 data class Coin(
     val `24hVolume`: String,
     val btcPrice: String,
-    val change: String,
+    val change: String?,
     val coinrankingUrl: String,
     val color: String?,
     val iconUrl: String,
@@ -21,7 +21,7 @@ data class Coin(
     val lowVolume: Boolean,
     val marketCap: String,
     val name: String,
-    val price: String,
+    val price: String?,
     val rank: Int,
     val sparkline: List<String>,
     val symbol: String,

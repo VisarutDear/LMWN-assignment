@@ -124,6 +124,7 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
                 return true
             }
         })
+
     }
 
     fun View.hideKeyBoard() = ViewCompat.getWindowInsetsController(this)
