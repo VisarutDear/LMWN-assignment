@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.visarut.myapplication.databinding.BottomSheetFragmentBinding
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
 
@@ -26,12 +28,14 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        viewModel.fetchCoinDetail(arguments?.getString("uuid") ?: "")
+        lifecycleScope.launch {
+            viewModel.fetchCoinDetail(arguments?.getString("uuid") ?: "")
+        }
         viewModel.coinDetail.observe(viewLifecycleOwner, { it ->
             binding.fullName = it.name
             binding.symbol = "(" + it.symbol +")"
-            binding.price = "$ "+ String.format("%.2f", it.price)
-            binding.marketCap = "$ "+ DecimalFormat("${it.marketCap},00")
+            binding.price = "$ ${String.format("%.2f", it.price.toFloat())}"
+            binding.marketCap = "$ ${it.marketCap}"
             binding.imageUrl = it.iconUrl
             binding.textViewCoinDescription.text =
                 it.description?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_COMPACT) } ?: "No description"
@@ -48,6 +52,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        lifecycleScope.launch {
+//            viewModel.fetchCoinDetail(arguments?.getString("uuid") ?: "")
+//        }
     }
 
 }

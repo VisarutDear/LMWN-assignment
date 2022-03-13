@@ -34,16 +34,10 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
                 name(coin.name)
                 symbol(coin.symbol)
                 change(coin.change)
-                changeFloat(coin.change.toFloat())
+                changeFloat((coin.change.toFloat()) as Float?)
                 onClickCoinItem { _ ->
                     this@HomeFragmentController.callback?.onClickCoin(coin.uuid)
                 }
-            }
-        }
-
-        val topRankSkeleton = (0..2).mapIndexed{ index, coin ->
-            CoinRankSkeletonBindingModel_().apply {
-                id("crypto$index")
             }
         }
 

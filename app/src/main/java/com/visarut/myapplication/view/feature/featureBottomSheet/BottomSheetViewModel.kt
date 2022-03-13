@@ -14,26 +14,40 @@ class BottomSheetViewModel(
 
     var coinDetail: MutableLiveData<CoinDetail> = MutableLiveData()
     var isShowWebSite = MutableLiveData(false)
+    val isShowLoading = MutableLiveData(true)
+    val isShowError = MutableLiveData(false)
 
-    fun fetchCoinDetail(coinUUID: String) {
-        viewModelScope.launch {
-            val getCoinDetailInput = GetCoinDetailUseCase.Input(coinUUID)
+    suspend fun fetchCoinDetail(coinUUID: String) {
+        val getCoinDetailInput = GetCoinDetailUseCase.Input(coinUUID)
+        hideError()
+        getCoinDetailUseCase.execute(getCoinDetailInput)
+            .onSuccess {
+                coinDetail.value = it.data.coin
+                setData()
+                hideLoading()
+            }
+            .onFailure {
+                // handle error
+                handleFetchCoinDetailError(it)
+                hideLoading()
+                showError()
+            }
 
-            getCoinDetailUseCase.execute(getCoinDetailInput)
-                .onSuccess {
-                    coinDetail.value = it.data.coin
-                }
-                .onFailure {
-                    // handle error
-                    handleFetchCoinDetailError(it)
-                }
+    }
 
-        }
-        setData()
+    private fun showError() {
+        isShowError.postValue(true)
+    }
+
+    private fun hideError() {
+        isShowError.postValue(false)
+    }
+
+    private fun hideLoading() {
+        isShowLoading.postValue(false)
     }
 
     private fun handleFetchCoinDetailError(it: Throwable) {
-        TODO("Not yet implemented")
     }
 
     private fun setData() {
