@@ -1,5 +1,5 @@
 # LMWN-assignment
-
+- An app that display list of cryptocurrency and display information of coin such as name, price, change and more.
 ## Summary
 - Architecture: Clean Architecture + MVVM
 - Uses [koin](https://github.com/InsertKoinIO/koin) for dependency injection
