@@ -3,7 +3,9 @@ package com.visarut.myapplication.view.feature.featureBottomSheet
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.visarut.myapplication.data.response.AllTimeHigh
 import com.visarut.myapplication.data.response.CoinDetail
+import com.visarut.myapplication.data.response.Link
 import com.visarut.myapplication.domain.usecase.GetCoinDetailUseCase
 import com.visarut.myapplication.domain.usecase.GetCoinUseCase
 import kotlinx.coroutines.launch
@@ -19,7 +21,6 @@ class BottomSheetViewModel(
 
     suspend fun fetchCoinDetail(coinUUID: String) {
         val getCoinDetailInput = GetCoinDetailUseCase.Input(coinUUID)
-        hideError()
         getCoinDetailUseCase.execute(getCoinDetailInput)
             .onSuccess {
                 coinDetail.value = it.data.coin
@@ -54,5 +55,4 @@ class BottomSheetViewModel(
     private fun setData() {
         isShowWebSite.postValue(coinDetail.value?.websiteUrl.isNullOrBlank().not())
     }
-
 }

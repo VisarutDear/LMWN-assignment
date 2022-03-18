@@ -79,24 +79,19 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.isShowLoading() ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.isShowLoading() || viewModel.isShowError() ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <FrameLayout
-                android:id="@+id/frame_layout_coin_icon"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_coin_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="@dimen/spacing_24"
                 android:layout_marginTop="@dimen/spacing_32"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <WebView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </FrameLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/btc"/>
 
             <TextView
                 android:id="@+id/text_view_coin_full_name"
@@ -106,8 +101,8 @@
                 android:text="@{fullName}"
                 android:fontFamily="@font/roboto_bold"
                 android:textSize="@dimen/font_18"
-                app:layout_constraintStart_toEndOf="@id/frame_layout_coin_icon"
-                app:layout_constraintTop_toTopOf="@id/frame_layout_coin_icon"
+                app:layout_constraintStart_toEndOf="@id/image_view_coin_icon"
+                app:layout_constraintTop_toTopOf="@id/image_view_coin_icon"
                 tools:text="Bitcoin" />
 
             <TextView
@@ -120,7 +115,7 @@
                 android:textSize="@dimen/font_16"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@id/text_view_coin_full_name"
-                app:layout_constraintTop_toTopOf="@id/frame_layout_coin_icon"
+                app:layout_constraintTop_toTopOf="@id/image_view_coin_icon"
                 tools:text="(BTC)" />
 
             <TextView

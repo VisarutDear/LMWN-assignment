@@ -11,6 +11,7 @@ import androidx.core.text.HtmlCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.visarut.myapplication.databinding.BottomSheetFragmentBinding
+import com.visarut.myapplication.view.feature.loadSvg
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DecimalFormat
@@ -45,6 +46,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 context?.startActivity(intent)
             }
             binding.textViewCoinFullName.setTextColor(Color.parseColor(it.color ?: "#333333"))
+            binding.imageViewCoinIcon.loadSvg(it.iconUrl)
         })
 
         return binding.root
