@@ -54,23 +54,16 @@
                 android:layout_height="match_parent"
                 android:background="@color/light_gray">
 
-                <FrameLayout
-                    android:id="@+id/frame_layout_coin_icon"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_coin_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="@dimen/spacing_16"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <WebView
-                        android:id="@+id/image_view_coin_icon"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:imageUrl="@{imageUrl}"
-                        tools:src="@drawable/btc"/>
-
-                </FrameLayout>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:imageUrl="@{imageUrl}"
+                    tools:src="@drawable/btc"/>
 
                 <TextView
                     android:id="@+id/text_view_coin_full_name"
@@ -86,7 +79,7 @@
                     android:maxLines="1"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/dark_gray"
-                    app:layout_constraintStart_toEndOf="@id/frame_layout_coin_icon"
+                    app:layout_constraintStart_toEndOf="@id/image_view_coin_icon"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss" />
 
@@ -100,7 +93,7 @@
                     android:textColor="@color/gray"
                     android:fontFamily="@font/roboto_bold"
                     android:text="@{shortName}"
-                    app:layout_constraintStart_toEndOf="@id/frame_layout_coin_icon"
+                    app:layout_constraintStart_toEndOf="@id/image_view_coin_icon"
                     app:layout_constraintTop_toBottomOf="@id/text_view_coin_full_name"
                     tools:text="BTC" />
 
