@@ -25,6 +25,7 @@ class BottomSheetViewModel(
                 coinDetail.value = it.data.coin
                 setData()
                 hideLoading()
+                hideError()
             }
             .onFailure {
                 // handle error
