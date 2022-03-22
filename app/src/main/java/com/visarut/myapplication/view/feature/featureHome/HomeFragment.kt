@@ -1,5 +1,6 @@
 package com.visarut.myapplication.view.feature.featureHome
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
     private lateinit var binding: HomeFragmentBinding
     private val bottomSheetFragment = BottomSheetFragment()
     private lateinit var loadMoreScollListener: RecyclerView.OnScrollListener
+    private val inviteFriendUrl = "https://careers.lmwn.com/"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,6 +86,14 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
 
         bottomSheetFragment.arguments = bundle
         bottomSheetFragment.show(childFragmentManager, "BottomSheetDialog")
+    }
+
+    override fun onClickInviteFriend() {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra("Share this to friend", inviteFriendUrl)
+        val chooser = Intent.createChooser(intent, "Share using...")
+        startActivity(chooser)
     }
 
     private fun fetchCoinList() {

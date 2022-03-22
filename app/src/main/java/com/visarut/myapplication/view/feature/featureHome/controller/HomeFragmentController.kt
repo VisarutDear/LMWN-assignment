@@ -14,9 +14,10 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
     }
 
     private var callback: HomeFragmentController.AddOnItemSelected? = null
-    var inviteFriendCount = 1
+
     interface AddOnItemSelected {
         fun onClickCoin(uuid : String)
+        fun onClickInviteFriend()
     }
 
     fun setItemSelectListener(callback : AddOnItemSelected){
@@ -24,7 +25,7 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
     }
 
     override fun buildModels(data: CoinsData?) {
-
+        var inviteFriendCount = 1
         Log.d("test", data?.coinList?.value.toString())
 
         val topRank = data?.coinList?.value?.take(DEFAULT_TOP_RANK)?.mapIndexed{ index, coin ->
@@ -69,7 +70,7 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
                                 inviteFriend {
                                     id("invite_friend_$index")
                                     onClickInviteFriend { _ ->
-
+                                        this@HomeFragmentController.callback?.onClickInviteFriend()
                                     }
                                 }
                                 inviteFriendCount += 1
