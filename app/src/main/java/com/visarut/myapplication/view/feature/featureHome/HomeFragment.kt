@@ -6,14 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.ImageLoader
-import coil.decode.SvgDecoder
-import coil.request.ImageRequest
 import com.visarut.myapplication.R
 import com.visarut.myapplication.databinding.HomeFragmentBinding
 import com.visarut.myapplication.domain.model.CoinsData
@@ -112,7 +108,8 @@ class HomeFragment : Fragment(), HomeFragmentController.AddOnItemSelected {
     }
 
     private fun setOnQueryTextListener() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.showSearching()
                 viewModel.hideTopRank()
