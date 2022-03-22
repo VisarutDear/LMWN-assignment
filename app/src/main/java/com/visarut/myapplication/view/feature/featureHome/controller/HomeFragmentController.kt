@@ -14,7 +14,7 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
     }
 
     private var callback: HomeFragmentController.AddOnItemSelected? = null
-
+    var inviteFriendCount = 1
     interface AddOnItemSelected {
         fun onClickCoin(uuid : String)
     }
@@ -63,7 +63,18 @@ class HomeFragmentController : TypedEpoxyController<CoinsData>() {
                         id("header_market")
                     }
                     data.coinList.value?.size?.let {
-                        data.coinList.value?.subList(DEFAULT_TOP_RANK, it)?.forEach {
+                        data.coinList.value?.subList(DEFAULT_TOP_RANK, it)?.forEachIndexed { index, it ->
+                            Log.d("test", "$index ${it.name} ${(index+1) % 5 == 0}")
+                            if ((index+inviteFriendCount) % 5 == 0) {
+                                inviteFriend {
+                                    id("invite_friend_$index")
+                                    onClickInviteFriend { _ ->
+
+                                    }
+                                }
+                                inviteFriendCount += 1
+                            }
+
                             coin {
                                 id(it.uuid)
                                 fullName(it.name)

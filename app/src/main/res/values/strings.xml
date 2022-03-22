@@ -13,4 +13,5 @@
     <string name="searching">Searching...</string>
     <string name="loading">Loading...</string>
     <string name="cant_load_coin_information">Can\'t load coin information</string>
+    <string name="invite_friend">You can earn $10 when you invite a friend to buy crypto. Invite your friend</string>
 </resources>
